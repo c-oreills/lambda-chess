@@ -21,7 +21,7 @@
     (assoc (assoc board from-i \-) to-i piece)))
 
 (defn try-check [board valid-moves am-i-white?]
-  (get valid-moves (ffirst (filter #(check? (second %) (not am-i-white?))
+  (get valid-moves (ffirst (drop-while #(not (check? (second %) (not am-i-white?)))
                  (map-indexed (fn [idx itm] [idx (my-apply-move board itm)])
                               valid-moves)))))
 
